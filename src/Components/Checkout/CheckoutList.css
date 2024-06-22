@@ -1,0 +1,130 @@
+/* CheckoutList.css */
+.login {
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 30px;
+}
+.container {
+  max-width: 600px;
+  margin: 30%;
+  padding: 20%;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 30px;
+}
+
+.section {
+  margin-bottom: 20px;
+  text-align: center;
+  margin-left: 30%;
+  margin-right: 30%; /* Center the content */
+  margin-top: 30px;
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 30px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 30px;
+}
+
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  /* margin-left: 30%;
+  margin-right: 30%; */
+}
+
+/*  */
+.form-checkoutlist {
+  padding: 10px; /* Increased padding for medium size */
+  border-radius: 8px; /* Larger border radius */
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  margin-right: 30%;
+  margin-left: 30%;
+}
+.textarea {
+  width: 100%;
+  padding: 10px; /* Increased padding for medium size */
+  border-radius: 8px; /* Larger border radius */
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  /* margin-right: 30%;
+  margin-left: 30%; */
+}
+
+.select {
+  width: 100%;
+  padding: 10px; /* Increased padding for medium size */
+  border-radius: 8px; /* Larger border radius */
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-left: 30%;
+  margin-right: 30%; /* Ensure padding and border are included in width */
+}
+
+button[type="submit"] {
+  padding: 12px 24px; /* Increased padding for medium size */
+  font-size: 1rem; /* Medium font size */
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px; /* Larger border radius */
+  cursor: pointer;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.checkout-div {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+.form-checkoutlist {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-checkoutlist h2.login {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.form-checkoutlist label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #555;
+}
+
+.form-checkoutlist input[type="text"],
+.form-checkoutlist input[type="email"],
+.form-checkoutlist textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
