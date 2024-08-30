@@ -4,48 +4,11 @@ import "./DescriptionBox.css";
 const DescriptionBox = () => {
   // const { product } = props;
   const [activeTab, setActiveTab] = useState("ProductDetails");
-  const [review, setReview] = useState("");
-  const [submittedReviews, setSubmittedReviews] = useState([]);
-  const [reviewImage, setReviewImage] = useState(null);
-  const [showReviewForm, setShowReviewForm] = useState(false);
+
   // const [setRating] = useState(0); // Add state for toggling review form
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-  };
-
-  const handleReviewChange = (e) => {
-    setReview(e.target.value);
-  };
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setReviewImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleSubmitReview = () => {
-    if (review.trim() !== "") {
-      const newReview = { text: review, image: reviewImage };
-      setSubmittedReviews([...submittedReviews, newReview]);
-      setReview("");
-      setReviewImage(null);
-    }
-  };
-
-  const handleDeleteReview = (index) => {
-    const updatedReviews = [...submittedReviews];
-    updatedReviews.splice(index, 1);
-    setSubmittedReviews(updatedReviews);
-  };
-
-  const handleToggleReviewForm = () => {
-    setShowReviewForm(!showReviewForm); // Toggle review form visibility
   };
 
   // const handleStarClick = (value) => {
@@ -63,14 +26,7 @@ const DescriptionBox = () => {
         >
           Delivery Details
         </div>
-        <div
-          className={`descriptionbox-nav-box ${
-            activeTab === "reviews" ? "active" : ""
-          }`}
-          onClick={() => handleTabChange("reviews")}
-        >
-          Customer Reviews
-        </div>
+
         <div
           className={`descriptionbox-nav-box ${
             activeTab === "Exchange" ? "active" : ""
@@ -81,76 +37,6 @@ const DescriptionBox = () => {
         </div>
       </div>
       <div className="descriptionbox-description">
-        {activeTab === "reviews" && (
-          <div>
-            <div className="reviews-container">
-              <h2 className="reviews-title"> Reviews</h2>
-              <div className="reviews-content">
-                {/* Display submitted reviews */}
-                {submittedReviews.map((submittedReview, index) => (
-                  <div key={index} className="review-item">
-                    {submittedReview.image && (
-                      <img
-                        src={submittedReview.image}
-                        alt={`Review ${index}`}
-                      />
-                    )}
-                    {/* <p>Rating: {submittedReview.rating}</p> */}
-                    <h4>{submittedReview.text}</h4>
-
-                    <button
-                      className="delete-review-btn"
-                      onClick={() => handleDeleteReview(index)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <button onClick={handleToggleReviewForm}>
-              {showReviewForm ? "Close Review Form" : "Write a Review"}
-            </button>
-            {showReviewForm && (
-              <div>
-                {/* <div className="rating-container">
-                  <p>Rating: </p>
-                  {[1, 2, 3, 4, 5].map((value) => (
-                    <button
-                      key={value}
-                      className={value <= rating ? "star-filled" : "star-empty"}
-                      onClick={() => handleStarClick(value)}
-                    >
-                      &#9733;
-                    </button>
-                  ))}
-                </div> */}
-
-                <h1> review here</h1>
-                <div className="review-input">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageUpload}
-                  />
-                  <textarea
-                    placeholder="Write your review.....!"
-                    value={review}
-                    onChange={handleReviewChange}
-                  />
-                </div>
-
-                <button
-                  className="submit-review-btn"
-                  onClick={handleSubmitReview}
-                >
-                  Submit Review
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-
         {activeTab === "ProductDetails" && (
           <div className="container">
             <h1 className="header">Free shipping</h1>

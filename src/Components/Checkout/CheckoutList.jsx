@@ -1,131 +1,113 @@
-import React, { useState } from "react";
-import "./CheckoutList.css";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-const CheckoutList = (props) => {
-  const [formData, setFormData] = useState({
-    name: "",
+const CheckoutList = ({ onSelectAddress }) => {
+  const initialFormData = {
+    username: "",
+    lastName: "",
     email: "",
-    contactNumber: "",
+    phoneNumber: "",
+    flatHouse: "",
+    fullAddress: "",
+    pinCode: "",
     state: "",
-    locality: "",
-    pincode: "",
-    address: "",
     city: "",
-    alternateNumber: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState(initialFormData);
+  const [addresses, setAddresses] = useState([]);
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
+
+  useEffect(() => {
+    fetchAccountDetails();
+  }, []);
+
+  const fetchAccountDetails = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/accountdetails", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("auth-token") || "",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch account details");
+      }
+
+      const data = await response.json();
+      setAddresses(data.addresses);
+      setFormData({
+        username: data.username,
+        lastName: data.lastName,
+        email: data.email || "",
+        phoneNumber: data.phoneNumber,
+        flatHouse: data.flatHouse,
+        fullAddress: data.fullAddress,
+        pinCode: data.pinCode,
+        state: data.state,
+        city: data.city,
+      });
+    } catch (error) {
+      console.error("Error fetching account details:", error.message);
+    }
+  };
+
+  const handleSelectAddress = (index) => {
+    setSelectedAddressIndex(index);
+    onSelectAddress(addresses[index]); // Notify parent component of selected address
+  };
+
+  const handleAddAddress = (e) => {
     e.preventDefault();
-    console.log(formData); // You can handle form submission logic here
-    // Reset form after submission if needed
-    setFormData({
-      name: "",
-      email: "",
-      contactNumber: "",
-      state: "",
-      locality: "",
-      pincode: "",
-      address: "",
-      city: "",
-      alternateNumber: "",
-    });
+    setAddresses([...addresses, formData]);
+    setFormData(initialFormData); // Clear form data after adding address
   };
 
   return (
-    <div className="form1">
-      <h1 className="checkout-div ">Checkout </h1>
-      {/* Delivery Address Section */}
-      <div className="form-checkoutlist">
-        <h2 className="login">Delivery Address</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <label htmlFor="contactNumber">Contact Number:</label>
-          <input
-            type="text"
-            id="contactNumber"
-            name="contactNumber"
-            value={formData.contactNumber}
-            onChange={handleChange}
-          />
-          <label htmlFor="state">State:</label>
-          <input
-            type="text"
-            id="state"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-          />
-          <label htmlFor="locality">Locality:</label>
-          <input
-            type="text"
-            id="locality"
-            name="locality"
-            value={formData.locality}
-            onChange={handleChange}
-          />
-          <label htmlFor="pincode">Pincode:</label>
-          <input
-            type="text"
-            id="pincode"
-            name="pincode"
-            value={formData.pincode}
-            onChange={handleChange}
-          />
-          <label htmlFor="address">Address:</label>
-          <textarea
-            id="address"
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-          />
-          <label htmlFor="city">City:</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-          />
-          <label htmlFor="alternateNumber">Alternate Number:</label>
-          <input
-            type="text"
-            id="alternateNumber"
-            name="alternateNumber"
-            value={formData.alternateNumber}
-            onChange={handleChange}
-          />
-          <button type="submit">Save Address</button>
-        </form>
-      </div>
-      {/* Proceed to Payment Section */}
-      <div>
-        <h2 className="login">Proceed to Payment</h2>
-        <button type="submit">Proceed to Payment</button>
-      </div>
-    </div>
+    <form onSubmit={handleAddAddress} className="saved-addresses">
+      <h3>
+        Hey! Welcome back {formData.username} {formData.lastName}
+      </h3>
+      <br />
+      <h4>Shipping Address</h4>
+      <br />
+
+      {addresses.map((address, index) => (
+        <div
+          key={index}
+          className={`addressesss ${
+            selectedAddressIndex === index ? "selected" : ""
+          }`}
+          onClick={() => handleSelectAddress(index)}
+        >
+          <p>
+            <strong>
+              {address.username} {address.lastName}
+            </strong>
+          </p>
+          <p>{address.fullAddress}</p>
+          <p>
+            {address.city}, {address.state} - {address.pinCode}
+          </p>
+          <p>Phone: {address.phoneNumber}</p>
+          <hr />
+        </div>
+      ))}
+
+      <button
+        className="button-btn"
+        type="button"
+        disabled={selectedAddressIndex === null}
+      >
+        Select The Address
+      </button>
+      <Link to="/newaddaddress">
+        <button className="button-btn">Add & Edit the Address</button>
+      </Link>
+      <hr />
+    </form>
   );
 };
 

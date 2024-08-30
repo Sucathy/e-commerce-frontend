@@ -7,6 +7,7 @@ const NewCollections = (props) => {
     <div className="new-collections">
       <h1>NEW COLLECTIONS</h1>
       <hr />
+
       <div className="collections">
         {props.data.map((item, i) => {
           return (

@@ -1,135 +1,213 @@
-import { useState } from "react";
-import "./Footer.css";
-
-import linkedin_icon from "../Assets/pngwing.com.png";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import React from "react";
 import whatsapp_icon from "../Assets/whatsapp_icon.png";
+import "./Footer.css";
+// import Fade from "@mui/material/Fade";
+import { Instagram } from "@mui/icons-material";
+import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const [activeTab, setActiveTab] = useState("description");
+  // const [expanded, setExpanded] = useState(false);
 
-  // Function to toggle active dropdown
-
-  const handleTabChange = (tab) => {
-    // setActiveTab(tab);
-    setActiveTab((prevTab) => (prevTab === tab ? null : tab));
-  };
+  // const handleExpansion = () => {
+  //   setExpanded((prevExpanded) => !prevExpanded);
+  // };
 
   return (
     <div className="footer">
       <div className="footer-logo">
-        {/* <img src={footer_logo} alt="" /> */}
-        <p>Sucathy</p>
+        <p>ShopSJ</p>
       </div>
 
-      <ul className="footer-links">
-        <li>
-          <div
-            className={`descriptionbox-nav-box ${
-              activeTab === "ProductDetails" ? "active" : ""
-            }`}
-            onClick={() => handleTabChange("ProductDetails")}
-          >
-            Product
-          </div>
-        </li>
-        <li>
-          <div
-            className={`descriptionbox-nav-box ${
-              activeTab === "company" ? "active" : ""
-            }`}
-            onClick={() => handleTabChange("company")}
-          >
-            company
-          </div>
-        </li>
+      {/* Accordion with custom Fade transition */}
+      {/* <Accordion
+        expanded={expanded}
+        onChange={handleExpansion}
+        TransitionComponent={Fade}
+        TransitionProps={{ timeout: 400 }}
+        sx={{
+          backgroundColor: "transparent",
+          boxShadow: "none",
+          color: "#fff",
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon style={{ color: "#fff" }} />}
+          aria-controls="collapse-panel-content"
+          id="collapse-panel-header"
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Custom transition using Fade
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography variant="body2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.
+          </Typography>
+        </AccordionDetails>
+      </Accordion> */}
 
-        <li>
-          <div>
-            <ul className="product-details-list">
-              <p>
-                Phone: 6363203639
-                <br />
-                Email: susuresh158@gmail.com <br />
-                Customer Service Hour @24 Hours
-                <br />
-                Address: BTM water tank bengaluru - 560089
-                <br />
-              </p>
-            </ul>
-          </div>
-        </li>
+      {/* Accordion with default Collapse transition */}
+      <Accordion
+        sx={{
+          backgroundColor: "transparent",
+          boxShadow: "none",
+          color: "#fff",
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon style={{ color: "#fff" }} />}
+          aria-controls="collapse-panel-content"
+          id="collapse-panel-header"
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Categories
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography variant="body2">
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <h3>ShopNJ</h3>
+            </Link>
 
-        <li>
-          {activeTab === "ProductDetails" && (
-            <div>
-              <ul className="product-details-list">
-                <li>
-                  <span className="value">
-                    <h2>Product</h2>
-                    Premium quality Full sleeves Plain Shirt direct from the
-                    manufacturer with very affordable Price which gives you
-                    perfect fit, comfort feeling with handsome look.Our product
-                    is made with such design which is wearable at All the
-                    Occations Like Formal Wear, Office wear, Weekend even Some
-                    of light colo$at Beach also Wear it with some slacks to the
-                    office and throw on some jeans at night for drinks with the
-                    guys. The style you want and the feel you need all rolled
-                    into this shirt.
-                  </span>
-                </li>
-              </ul>
+            <Link to="/mens" style={{ textDecoration: "none" }}>
+              <h3>Men</h3>
+            </Link>
+
+            <Link to="/womens" style={{ textDecoration: "none" }}>
+              <h3>Women</h3>
+            </Link>
+            <Link to="/kids" style={{ textDecoration: "none" }}>
+              <h3>Kids</h3>
+            </Link>
+
+            <Link to="/NewCollections" style={{ textDecoration: "none" }}>
+              <h3>New Collection</h3>
+            </Link>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion
+        sx={{
+          backgroundColor: "transparent",
+          boxShadow: "none",
+          color: "#fff",
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon style={{ color: "#fff" }} />}
+          aria-controls="collapse-panel-content"
+          id="collapse-panel-header"
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Need Help
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography variant="body2">
+            <Link to="/returnexchange" style={{ textDecoration: "none" }}>
+              <h3>Returns & Exchanges</h3>
+            </Link>
+
+            <div className="footer-icons-container">
+              <a
+                href="https://chat.whatsapp.com/DLS6LXieTArKCTMJs1BM8Y"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h3>Chat on WhatsApp</h3>
+                {/* <img src={whatsapp_icon} alt="WhatsApp Icon" /> */}
+              </a>
             </div>
-          )}
-        </li>
-        <li>
-          {activeTab === "company" && (
-            <div>
-              <ul className="product-details-list">
-                <h2>Company</h2>
-                <p>
-                  Welcome to our company! We're dedicated to providing the best
-                  online shopping experience for our custome
-                  <br /> Our mission is to offer a wide range of premium
-                  products and unbeatable deals, ensuring convenience and value
-                  for all shoppe$ At our company, we prioritize customer
-                  satisfaction and strive to exceed expectations with every
-                  interaction. From our seamless navigation and secure
-                  transactions to our prompt deliveries, we're committed to
-                  delivering excellence at every step. Trusted by millions
-                  worldwide, we've established ou$lves as a leading force in the
-                  e-commerce industry. Whether you're looking for everyday
-                  essentials or luxury indulgences, we have something for
-                  everyone. Join us today and discover why we're the preferred
-                  choice for savvy shoppe$everywhere.
-                </p>
-              </ul>
+            <Link to="/contactus" style={{ textDecoration: "none" }}>
+              <h3>Contact Us</h3>
+            </Link>
+            {/* <Link to="/tracking" style={{ textDecoration: "none" }}>
+              <h3>track</h3>
+            </Link> */}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion
+        sx={{
+          backgroundColor: "transparent",
+          boxShadow: "none",
+          color: "#fff",
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon style={{ color: "#fff" }} />}
+          aria-controls="collapse-panel-content"
+          id="collapse-panel-header"
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Company
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography variant="body2">
+            <Link to="/shippingpolicy" style={{ textDecoration: "none" }}>
+              <h3>Shipping Policy</h3>
+            </Link>
+            <Link to="/privacypolicy" style={{ textDecoration: "none" }}>
+              <h3>Privacy Policy</h3>
+            </Link>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion
+        sx={{
+          backgroundColor: "transparent",
+          boxShadow: "none",
+          color: "#fff",
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon style={{ color: "#fff" }} />}
+          aria-controls="collapse-panel-content"
+          id="collapse-panel-header"
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Get in touch
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography variant="body2">
+            <div className="footer-social-icons">
+              <div className="footer-icons-container">
+                <a
+                  href="https://www.linkedin.com/feed/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={Instagram} alt="LinkedIn Icon" />
+                </a>
+              </div>
+              <div className="footer-icons-container">
+                <a
+                  href="https://chat.whatsapp.com/DLS6LXieTArKCTMJs1BM8Y"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={whatsapp_icon} alt="WhatsApp Icon" />
+                </a>
+              </div>
             </div>
-          )}
-        </li>
-      </ul>
-      <div className="footer-social-icons">
-        <div className="footer-icons-container">
-          <a
-            href="https://www.linkedin.com/feed/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={linkedin_icon} alt="LinkedIn Icon" />
-          </a>
-        </div>
-        <div className="footer-icons-container">
-          <a
-            href="https://chat.whatsapp.com/CTPBqumwCYVLxDJjuprTNk"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={whatsapp_icon} alt="WhatsApp Icon" />
-          </a>
-        </div>
-      </div>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+
       <div className="footer-copyright">
         <hr />
-        <p>Copyright @ 2023 - All Right Reserved.</p>
+        <p>Copyright © 2023 - All Rights Reserved.</p>
       </div>
     </div>
   );

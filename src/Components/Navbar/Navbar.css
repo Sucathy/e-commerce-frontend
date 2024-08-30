@@ -11,13 +11,14 @@
   box-shadow: 0 1px 3px -2px rgb(228, 228, 228);
   padding: 15px 70px;
 }
+
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 .nav-logo img {
-  width: 45px;
+  width: 100px;
+  height: 90px;
 }
 .nav-logo p {
   color: #000000;
@@ -30,10 +31,13 @@
   list-style: none;
   gap: 40px;
   color: #000000;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
 }
-
+.menu-btn {
+  width: 40px;
+  height: 40px;
+}
 .nav-menu li {
   display: flex;
   flex-direction: column;
@@ -57,13 +61,13 @@
 }
 
 .nav-login-cart button {
-  width: 130px;
-  height: 45px;
+  width: 75px;
+  height: 35px;
   outline: none;
   border: 1px solid #ffffff;
   border-radius: 75px;
   color: #ffffff;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 500;
   background: rgb(0, 0, 0);
   cursor: pointer;
@@ -99,6 +103,10 @@
   .nav-menu {
     gap: 15px;
   }
+  .nav-logo img {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 @media (max-width: 750px) {
@@ -113,6 +121,10 @@
     width: 30px;
     rotate: -90deg;
     transition: 0.5s;
+  }
+  .nav-logo img {
+    width: 70px;
+    height: 70px;
   }
   .nav-menu {
     display: none;
@@ -137,11 +149,12 @@
 
 @media (max-width: 500px) {
   .nav {
-    padding: 15px 15px;
+    padding: 1px 20px;
   }
 
   .nav-logo img {
-    width: 30px;
+    width: 100px;
+    height: 90px;
   }
   .nav-logo p {
     font-size: 18px;

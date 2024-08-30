@@ -1,130 +1,111 @@
-/* CheckoutList.css */
-.login {
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 30px;
-}
-.container {
-  max-width: 600px;
-  margin: 30%;
-  padding: 20%;
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 30px;
+.checkoutListc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
 }
 
-.section {
-  margin-bottom: 20px;
-  text-align: center;
-  margin-left: 30%;
-  margin-right: 30%; /* Center the content */
-  margin-top: 30px;
-}
-
-.section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 30px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 30px;
-}
-
-.label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  /* margin-left: 30%;
-  margin-right: 30%; */
-}
-
-/*  */
-.form-checkoutlist {
-  padding: 10px; /* Increased padding for medium size */
-  border-radius: 8px; /* Larger border radius */
-  border: 2px solid #ccc;
-  box-sizing: border-box;
-  margin-right: 30%;
-  margin-left: 30%;
-}
-.textarea {
+.address-page {
   width: 100%;
-  padding: 10px; /* Increased padding for medium size */
-  border-radius: 8px; /* Larger border radius */
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  /* margin-right: 30%;
-  margin-left: 30%; */
-}
-
-.select {
-  width: 100%;
-  padding: 10px; /* Increased padding for medium size */
-  border-radius: 8px; /* Larger border radius */
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  margin-left: 30%;
-  margin-right: 30%; /* Ensure padding and border are included in width */
-}
-
-button[type="submit"] {
-  padding: 12px 24px; /* Increased padding for medium size */
-  font-size: 1rem; /* Medium font size */
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 8px; /* Larger border radius */
-  cursor: pointer;
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-
-button[type="submit"]:hover {
-  background-color: #0056b3;
-  margin-left: 30%;
-  margin-right: 30%;
-}
-.checkout-div {
-  margin-left: 30%;
-  margin-right: 30%;
-}
-.form-checkoutlist {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 800px;
   background-color: #f7f7f7;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-checkoutlist h2.login {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(220, 218, 218, 0.89);
   margin-bottom: 20px;
-  font-size: 24px;
-  color: #333;
+  padding: 20px;
 }
 
-.form-checkoutlist label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 16px;
-  color: #555;
-}
-
-.form-checkoutlist input[type="text"],
-.form-checkoutlist input[type="email"],
-.form-checkoutlist textarea {
+.address_details {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 16px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+}
+
+.address_details h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.address_details h2 {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #222222;
+  border-bottom: 2px solid #000000;
+  padding-bottom: 10px;
+}
+
+.saved-addresses {
+  display: flex;
+  flex-direction: column;
+}
+
+.addressesss {
+  background-color: #fefefe;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.913);
+  cursor: pointer;
+}
+
+.addressesss.selected {
+  border: 2px solid #e0e0e1;
+}
+
+.addressesss p {
+  margin: 5px 0;
+  color: #d2cdcd;
+}
+
+.addressesss strong {
+  color: #ffffff;
+  font-size: 1.1em;
+}
+
+.addressesss hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.order-summary {
+  width: 100%;
+  max-width: 800px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(223, 223, 223, 0.895);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.order-summary h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #cacaca;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-item p {
+  margin: 0;
+  color: #fffafa;
+}
+
+.checkout-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.checkout-button button:disabled {
+  background-color: #d8d8d8;
+  cursor: not-allowed;
 }

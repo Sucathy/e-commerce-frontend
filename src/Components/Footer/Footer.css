@@ -1,120 +1,54 @@
 .footer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  padding-top: 20px;
-  background-color: black;
-  color: white;
+  background-color: #000000;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
 }
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-.footer-logo p {
-  font-size: 30px;
-  font-weight: 700;
-}
-.footer-logo img {
-  width: 50px;
-}
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style: none;
-  gap: 40px;
 
-  font-size: 16px;
+.footer-logo p {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
-.footer-links li {
-  cursor: pointer;
+
+.MuiAccordionSummary-root {
+  background-color: #000000;
+  padding: 10px;
+}
+
+.MuiAccordionDetails-root {
+  background-color: #000000;
+  padding: 10px;
 }
 .footer-social-icons {
   display: flex;
-  gap: 10px;
+  justify-content: center; /* Center the icons horizontally */
+  margin-top: 20px; /* Add some space above the icons */
 }
+
 .footer-icons-container {
-  padding: 10px;
-  padding-bottom: 6px;
-  background: #fbfbfb;
-  border: 1px solid #ebebeb;
+  margin: 0 10px; /* Add space between the icons */
+  transition: transform 0.3s ease; /* Smoothly scale icons on hover */
 }
+
+.footer-icons-container a {
+  display: inline-block; /* Ensure the link wraps around the icon */
+}
+
 .footer-icons-container img {
-  width: 25px;
-}
-.footer-copyright {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  margin-bottom: 30px;
-
-  font-size: 16px;
-}
-.footer-copyright hr {
-  width: 80%;
-  border: none;
-  border-radius: 10px;
-  height: 2px;
-  background: #c7c7c7;
-}
-@media (max-width: 800px) {
-  .footer-links {
-    gap: 20px;
-    font-size: 14px;
-  }
+  width: 40px; /* Set a fixed width for the icons */
+  height: 40px; /* Set a fixed height for the icons */
+  object-fit: contain; /* Ensure the icon image scales nicely */
 }
 
-.footer-links .dropdown-content {
-  display: none;
+.footer-icons-container:hover {
+  transform: scale(1.1); /* Slightly enlarge the icon on hover */
 }
 
-/* Show dropdown content when hovering over list item */
-.footer-links li.active .dropdown-content {
-  display: block;
+.footer-social-icons a img {
+  filter: brightness(0) invert(1); /* Make the icons white for dark backgrounds */
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgb(255, 255, 255); /* Light black background */
-  color: rgb(0, 0, 0); /* White text color */
-  width: 1000px; /* Adjust width as needed */
-  padding: 10px; /* Adjust padding as needed */
-  border-radius: 5px; /* Rounded corners */
-  text-align: center; /* Center-aligned text */
-  z-index: 1;
-  border-radius: 24px;
-  border-right-color: antiquewhite;
-  border-width: 3px;
-  left: 50%; /* Center horizontally relative to the page */
-  transform: translateX(
-    -50%
-  ); /* Ensure the dropdown appears above other elements */
-}
-
-.dropdown-content p {
-  margin: 0; /* Remove default margin for paragraphs */
-}
-
-.dropdown-toggle.active .dropdown-content {
-  display: block; /* Show dropdown when active */
-}
-
-.descriptionbox-nav-box {
-  display: inline-block;
-  padding: 10px 20px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.descriptionbox-nav-box.active {
-  background-color: #5f6469;
-  color: #fff;
+.footer-social-icons a img:hover {
+  filter: brightness(1); /* Return to original color on hover */
 }

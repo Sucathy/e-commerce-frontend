@@ -1,81 +1,215 @@
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import MobileStepper from "@mui/material/MobileStepper";
+import Paper from "@mui/material/Paper";
+import { useTheme } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import arrow_icon from "../Assets/arrow.png";
-import hero1_image from "../Assets/hero1_image.webp";
+import SwipeableViews from "react-swipeable-views";
+import { autoPlay } from "react-swipeable-views-utils";
+import kid_icon from "../Assets/kidlisticon.jpg";
+import men_icon from "../Assets/menlistcon.jpg";
+import new_icon from "../Assets/new.jpg";
+import women_icon from "../Assets/womenlisticon.jpg";
 import "./Hero.css";
 
-const Hero = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-  const heroSections = [
-    {
-      title: "NEW ARRIVALS ONLY",
-      description: ["new", "collections", "for everyone"],
-      link: "/NewCollections",
-      image: hero1_image,
-      background: "linear-gradient(180deg, #262227, #36203122 60%)",
-    },
-    {
-      title: "FRESH STYLES",
-      description: ["new", "arrivals", "just for you"],
-      link: "/FreshStyles",
-      image: hero1_image,
-      background: "linear-gradient(180deg, #8a7c3e, #36203122 60%)",
-    },
-    {
-      title: "EXCLUSIVE OFFERS",
-      description: ["exclusive", "deals", "just for you"],
-      link: "/ExclusiveOffers",
-      image: hero1_image,
-      background: "linear-gradient(180deg, #9a4419, #36203122 60%)",
-    },
-  ];
+const Hero = () => {
+  const theme = useTheme();
+  const [allwebproducts, setAllwebProducts] = useState([]);
+  const [activeStep, setActiveStep] = useState(0);
+  const maxSteps = allwebproducts.length * 3;
+
+  const fetchInfo = () => {
+    fetch("http://54.227.62.35:4000/allwebproducts")
+      .then((res) => res.json())
+      .then((data) => setAllwebProducts(data))
+      .catch((error) => console.error("Error fetching products:", error));
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === heroSections.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000); // Change slide every 3 seconds
+    fetchInfo();
+  }, []);
 
-    return () => clearInterval(interval);
-  }, [heroSections.length]);
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleStepChange = (step) => {
+    setActiveStep(step);
+  };
+
+  const getImageForStep = (product, step) => {
+    switch (step % 3) {
+      case 0:
+        return product.webimage1 || "";
+      case 1:
+        return product.webimage2 || "";
+      case 2:
+        return product.webimage3 || "";
+      default:
+        return "";
+    }
+  };
 
   return (
-    <div className="hero-container">
-      <div
-        className="hero-wrapper"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
-        {heroSections.map((section, index) => (
-          <div
-            className="hero"
-            key={index}
-            style={{ background: section.background }}
-          >
-            <div className="hero-left">
-              <h2>{section.title}</h2>
-              <div>
-                <div className="hero-hand-icon">
-                  <p>{section.description[0]}</p>
-                </div>
-                <p>{section.description[1]}</p>
-                <p>{section.description[2]}</p>
-              </div>
-              <Link to={section.link}>
-                <div className="hero-latest-btn">
-                  <div>Latest Collection</div>
-                  <img src={arrow_icon} alt="Arrow Icon" />
-                </div>
-              </Link>
-            </div>
-            <div className="hero-right">
-              <img src={section.image} alt="hero" />
-            </div>
-          </div>
-        ))}
+    <>
+      <ul className="list_catcategory">
+        <li>
+          <Link to="/Mens" style={{ textDecoration: "none" }}>
+            <img src={men_icon} alt="Men" className="category-icon" />
+            <h3 className="category-title">Men</h3>
+          </Link>
+        </li>
+        <li>
+          <Link to="/womens" style={{ textDecoration: "none" }}>
+            <img src={women_icon} alt="Women" className="category-icon" />
+            <h3 className="category-title">Women</h3>
+          </Link>
+        </li>
+        <li>
+          <Link to="/kids" style={{ textDecoration: "none" }}>
+            <img src={kid_icon} alt="Kid" className="category-icon" />
+            <h3 className="category-title">Kid</h3>
+          </Link>
+        </li>
+        <li>
+          <Link to="/NewCollections" style={{ textDecoration: "none" }}>
+            <img
+              src={new_icon}
+              alt="New Collections"
+              className="category-icon"
+            />
+            <h3 className="category-title">New Collections</h3>
+          </Link>
+        </li>
+      </ul>
+      <div className="boxofview">
+        <Box
+          sx={{
+            maxWidth: "100%",
+            flexGrow: 4,
+            mx: "auto",
+            padding: "0 20px",
+            "@media (max-width: 600px)": {
+              padding: "0 10px",
+            },
+          }}
+        >
+          {allwebproducts.length > 0 ? (
+            <>
+              <Paper
+                square
+                elevation={0}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  height: 80,
+                  pl: 2,
+                  bgcolor: "background.default",
+                  "@media (max-width: 600px)": {
+                    height: 60,
+                    pl: 1,
+                  },
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    "@media (max-width: 600px)": {
+                      fontSize: "1rem",
+                    },
+                  }}
+                >
+                  {allwebproducts[Math.floor(activeStep / 3)]?.title}
+                </Typography>
+              </Paper>
+              <AutoPlaySwipeableViews
+                axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+                index={activeStep}
+                onChangeIndex={handleStepChange}
+                enableMouseEvents
+                interval={6000}
+              >
+                {allwebproducts.map((product, index) =>
+                  [0, 1, 2].map((subIndex) => (
+                    <div key={`${product._id}-${subIndex}`}>
+                      {Math.abs(activeStep - (index * 3 + subIndex)) <= 1 ? (
+                        <Box
+                          component="img"
+                          sx={{
+                            height: { xs: "250px", sm: "350px", md: "430px" },
+                            maxWidth: { xs: "100%", sm: "90%", md: "80%" },
+                            objectFit: "cover",
+                            display: "block",
+                            margin: "0 auto",
+                          }}
+                          src={getImageForStep(product, subIndex)}
+                          alt={product.title || "Product Image"}
+                        />
+                      ) : null}
+                    </div>
+                  ))
+                )}
+              </AutoPlaySwipeableViews>
+              <MobileStepper
+                steps={maxSteps}
+                position="static"
+                activeStep={activeStep}
+                nextButton={
+                  <Button
+                    size="small"
+                    onClick={handleNext}
+                    disabled={activeStep === maxSteps - 1}
+                    sx={{
+                      "@media (max-width: 600px)": {
+                        fontSize: "0.75rem",
+                      },
+                    }}
+                  >
+                    {/* Next */}
+                    {theme.direction === "rtl" ? (
+                      <KeyboardArrowLeft />
+                    ) : (
+                      <KeyboardArrowRight />
+                    )}
+                  </Button>
+                }
+                backButton={
+                  <Button
+                    size="small"
+                    onClick={handleBack}
+                    disabled={activeStep === 0}
+                    sx={{
+                      "@media (max-width: 600px)": {
+                        fontSize: "0.75rem",
+                      },
+                    }}
+                  >
+                    {theme.direction === "rtl" ? (
+                      <KeyboardArrowRight />
+                    ) : (
+                      <KeyboardArrowLeft />
+                    )}
+                    {/* Back */}
+                  </Button>
+                }
+              />
+            </>
+          ) : (
+            <p>No products available.</p>
+          )}
+        </Box>
       </div>
-    </div>
+    </>
   );
 };
 

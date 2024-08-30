@@ -6,8 +6,9 @@ const Item = (props) => {
   return (
     <div className="item">
       <Link to={`/product/${props.id}`} style={{ textDecoration: "none" }}>
-        <img onClick={window.scrollTo(0, 0)} src={props.image} alt="products" />
+        <img onClick={window.scrollTo(0, 0)} src={props.image} alt="" />
       </Link>
+
       <p>{props.name}</p>
       <p>{props.category}</p>
       {/* <p>Description: {props.tags}</p> */}
